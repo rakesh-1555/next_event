@@ -1,5 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
+import Navbar from "@/components/navbar";
+import { Toaster } from "react-hot-toast";
+import AuthProvider from "@/components/AuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,8 +26,32 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        {/* <div className="flex gap-2">
+          <Link href="/">Home</Link>
+          <Link href="/profile">Profile</Link>
+          <a href="/">home</a>
+          <a href="/profile">profile</a>
+        </div> */}
+        <Toaster position="bottom-right" />
+        <AuthProvider>
+          <Navbar />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
 }
+
+// export default function RootLayout({ children }) {
+//   return (
+//     <html lang="en">
+//       <body className={inter.className}>
+//         <div className="flex gap-2">
+//           <Link href="/">Home</Link> <Link href="/profile">Profile</Link>
+//           <a href="/">home</a> <a href="/profile">profile</a>
+//         </div>
+//         {children}
+//       </body>
+//     </html>
+//   );
+// }
